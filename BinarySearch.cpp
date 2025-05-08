@@ -50,3 +50,71 @@ void bubbleSortArray()
         pass++;
     } while (pass < n);
 }
+
+void display()
+{
+    cout << "==============================\n";
+    cout << "Elemen Array Setelah Diurutkan (Asc)\n";
+    cout << "==============================\n";
+    for (int i = 0; i < n; i++)
+    {
+        cout << elemen[i];
+        if (i < n - 1)
+        {
+            cout << ", ";
+        }
+    }
+    cout << endl;
+}
+
+void binarySearch()
+{
+    char ulang;
+    do
+    {
+        cout << "\n==============================\n";
+        cout << "Pencarian Binary Search\n";
+        cout << "==============================\n";
+
+        int item;
+        cout << "Masukkan elemen yang ingin dicari: ";
+        cin >> item;
+
+        int low = 0;
+        int high = n - 1;
+
+        do
+        {
+            int mid = (low + high) / 2;
+
+            if (elemen[mid] == item)
+            {
+                cout << "\nElemen " << item << " ditemukan pada indeks ke-" << mid << ".\n";
+                return;
+            }
+            else if (item < elemen[mid])
+            {
+                high = mid - 1;
+            }
+            else
+            {
+                low = mid + 1;
+            }
+        } while (low <= high);
+
+        cout << "\nMaaf! Elemen " << item << " tidak ditemukan dalam array.\n";
+
+        cout << "\nIngin mencari lagi? (y/n): ";
+        cin >> ulang;
+
+    } while (ulang == 'y' || ulang == 'Y');
+}
+
+int main()
+{
+    input();
+    bubbleSortArray();
+    display();
+    binarySearch();
+        return 0;
+}
